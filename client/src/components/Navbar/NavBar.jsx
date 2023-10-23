@@ -19,7 +19,7 @@ export default function NavBar() {
               to={"sign-up"}
               className="flex items-center justify-center gap-2"
             >
-              <UserCircleIcon className="w-6" />
+              <UserCircleIcon className="w-7 h-7" />
               <span className="text-purple-600">Sign Up</span>
             </Link>
             {/*  */}
@@ -27,7 +27,7 @@ export default function NavBar() {
               to={"sign-in"}
               className="flex items-center justify-center gap-2"
             >
-              <ArrowRightCircleIcon className="w-6" />
+              <ArrowRightCircleIcon className="w-7 h-7" />
               <span className="text-purple-600">Sign In</span>
             </Link>
           </li>
