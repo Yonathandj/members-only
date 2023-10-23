@@ -8,7 +8,7 @@ import {
 export default function NavBar() {
   return (
     <header>
-      <nav className="flex justify-around items-center p-4">
+      <nav className="flex justify-around items-center p-6">
         <Link to={"/"} className="text-3xl font-bold flex gap-2">
           <h3 className="text-purple-600">Members</h3>
           <h3>Only</h3>
