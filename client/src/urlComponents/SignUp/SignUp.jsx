@@ -9,13 +9,25 @@ export default function SignUp() {
     password: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    const response = await fetch("/sign-up", {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signUpData),
+    });
+    setLoading(false);
     setSignUpData({
       firstName: "",
       lastName: "",
@@ -23,6 +35,7 @@ export default function SignUp() {
       password: "",
       confirmPassword: "",
     });
+    return response;
   };
 
   const content = (
@@ -119,5 +132,7 @@ export default function SignUp() {
     </>
   );
 
-  return <Form content={content} handleSubmit={handleSubmit} />;
+  return (
+    <Form content={content} handleSubmit={handleSubmit} loading={loading} />
+  );
 }

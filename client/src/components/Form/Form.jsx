@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Form({ content, handleSubmit }) {
+export default function Form({ content, handleSubmit, loading }) {
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <form
@@ -9,12 +9,21 @@ export default function Form({ content, handleSubmit }) {
       >
         {content}
         <section className="flex gap-2 mt-4 text-white">
-          <Link to={"/"} className="px-3 py-1 bg-purple-600 rounded-2xl">
-            Cancel
-          </Link>
-          <button className="px-3 py-1 bg-purple-600 rounded-2xl" type="submit">
-            Submit
-          </button>
+          {loading ? (
+            ""
+          ) : (
+            <>
+              <Link to={"/"} className="px-3 py-1 bg-purple-600 rounded-2xl">
+                Cancel
+              </Link>
+              <button
+                className="px-3 py-1 bg-purple-600 rounded-2xl"
+                type="submit"
+              >
+                Submit
+              </button>
+            </>
+          )}
         </section>
       </form>
     </div>
