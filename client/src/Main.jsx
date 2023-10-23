@@ -7,6 +7,8 @@ import "./Main.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Router />
+    <div className="max-w-[1200px] mx-auto">
+      <Router />
+    </div>
   </React.StrictMode>
 );

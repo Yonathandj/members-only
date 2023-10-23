@@ -3,6 +3,7 @@ import Form from "../../components/Form/Form";
 export default function SignIn() {
   return (
     <Form>
+      <h2 className="text-5xl mb-10 text-purple-600 font-bold text-center">Sign In Form</h2>
       <section className="flex flex-col p-2">
         <label htmlFor="email" className="text-lg">
           Email
