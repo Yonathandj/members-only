@@ -2,7 +2,7 @@ export default function Slider() {
   return (
     <div className="max-w-[40%] mx-auto mt-14">
       <h2 className="text-2xl text-center font-semibold">
-        <span className="text-purple-600">Room</span> available
+        <span className="text-purple-600">Rooms</span> available
       </h2>
       <marquee direction="left">
         <div className="flex gap-4 mt-8 text-white tracking-wider">
