@@ -18,7 +18,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch("/sign-up", {
+    const response = await fetch("http://localhost:5172/sign-up", {
       method: "POST",
       mode: "cors",
       credentials: "include",
