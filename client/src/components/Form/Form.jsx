@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 export default function Form({ content, handleSubmit, loading }) {
   return (
     <form
-      className="p-4 bg-purple-100 rounded-lg w-4/4 sm:w-3/4 mx-auto mt-2 sm:mt-16"
+      className="w-4/4 mx-auto mt-2 rounded-lg bg-purple-100 p-4 sm:mt-16 sm:w-3/4"
       onSubmit={handleSubmit}
     >
       {content}
-      <section className="flex gap-2 mt-4 text-white">
+      <section className="mt-4 flex gap-2 text-white">
         {loading ? (
           ""
         ) : (
           <>
-            <Link to={"/"} className="px-3 py-1 bg-purple-600 rounded-2xl">
+            <Link to={"/"} className="rounded-2xl bg-purple-600 px-3 py-1">
               Cancel
             </Link>
             <button
-              className="px-3 py-1 bg-purple-600 rounded-2xl"
+              className="rounded-2xl bg-purple-600 px-3 py-1"
               type="submit"
             >
               Submit

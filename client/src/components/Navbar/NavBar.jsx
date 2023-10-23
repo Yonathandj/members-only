@@ -8,8 +8,8 @@ import {
 export default function NavBar() {
   return (
     <header>
-      <nav className="flex flex-col gap-6 sm:gap-0 sm:flex-row justify-around items-center p-6">
-        <Link to={"/"} className="text-3xl font-bold flex gap-2">
+      <nav className="flex flex-col items-center justify-around gap-6 p-6 sm:flex-row sm:gap-0">
+        <Link to={"/"} className="flex gap-2 text-3xl font-bold">
           <span className="text-purple-600">Members</span>
           <span>Only</span>
         </Link>
@@ -19,7 +19,7 @@ export default function NavBar() {
               to={"sign-up"}
               className="flex items-center justify-center gap-2"
             >
-              <UserCircleIcon className="w-7 h-7" />
+              <UserCircleIcon className="h-7 w-7" />
               <span className="text-purple-600">Sign Up</span>
             </Link>
             {/*  */}
@@ -27,7 +27,7 @@ export default function NavBar() {
               to={"sign-in"}
               className="flex items-center justify-center gap-2"
             >
-              <ArrowRightCircleIcon className="w-7 h-7" />
+              <ArrowRightCircleIcon className="h-7 w-7" />
               <span className="text-purple-600">Sign In</span>
             </Link>
           </li>

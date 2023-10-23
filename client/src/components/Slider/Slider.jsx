@@ -1,26 +1,26 @@
 export default function Slider() {
   return (
-    <div className="max-w-[80%] sm:max-w-[40%] mx-auto mt-14">
-      <h2 className="text-2xl text-center font-semibold">
+    <div className="mx-auto mt-14 max-w-[80%] sm:max-w-[40%]">
+      <h2 className="text-center text-2xl font-semibold">
         <span className="text-purple-600">Rooms</span> available
       </h2>
       <marquee direction="left">
-        <div className="flex gap-4 mt-8 text-white tracking-wider">
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">Sport</span>
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">Gaming</span>
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">Pet</span>
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">Food</span>
+        <div className="mt-8 flex gap-4 tracking-wider text-white">
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">Sport</span>
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">Gaming</span>
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">Pet</span>
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">Food</span>
         </div>
       </marquee>
       <marquee direction="right">
-        <div className="flex gap-4 text-white tracking-wider">
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">
+        <div className="flex gap-4 tracking-wider text-white">
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">
             Environment
           </span>
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">Space</span>
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">Coding</span>
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">Health</span>
-          <span className="py-1 px-3 bg-purple-600 rounded-2xl">Politic</span>
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">Space</span>
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">Coding</span>
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">Health</span>
+          <span className="rounded-2xl bg-purple-600 px-3 py-1">Politic</span>
         </div>
       </marquee>
     </div>

@@ -21,7 +21,7 @@ export default function SignIn() {
 
   const content = (
     <>
-      <h2 className="text-5xl mb-10 text-purple-600 font-bold text-center">
+      <h2 className="mb-10 text-center text-5xl font-bold text-purple-600">
         Sign In Form
       </h2>
       <section className="flex flex-col p-2">
@@ -37,7 +37,7 @@ export default function SignIn() {
           onChange={handleChange}
           value={signInData.email}
           placeholder="Enter your email"
-          className="p-2 bg-purple-200 rounded-md outline-none"
+          className="rounded-md bg-purple-200 p-2 outline-none"
         />
       </section>
       <section className="flex flex-col p-2">
@@ -53,7 +53,7 @@ export default function SignIn() {
           onChange={handleChange}
           value={signInData.password}
           placeholder="Enter your password"
-          className="p-2 bg-purple-200 rounded-md outline-none"
+          className="rounded-md bg-purple-200 p-2 outline-none"
         />
       </section>
     </>
