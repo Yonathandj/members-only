@@ -20,9 +20,7 @@ export default function NavBar() {
               className="flex items-center justify-center gap-2"
             >
               <UserCircleIcon className="w-6" />
-              <span className="text-lg font-medium text-purple-600">
-                Sign Up
-              </span>
+              <span className="font-medium text-purple-600">Sign Up</span>
             </Link>
             {/*  */}
             <Link
@@ -30,9 +28,7 @@ export default function NavBar() {
               className="flex items-center justify-center gap-2"
             >
               <ArrowRightCircleIcon className="w-6" />
-              <span className="text-lg font-medium text-purple-600">
-                Sign In
-              </span>
+              <span className="font-medium text-purple-600">Sign In</span>
             </Link>
           </li>
         </ul>
