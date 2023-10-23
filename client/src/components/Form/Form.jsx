@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Form({ children }) {
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-screen">
+    <div className="flex flex-col justify-center items-center h-screen">
       <form className="p-6 bg-purple-100 rounded-lg w-2/4">
         {children}
         <section className="flex gap-2 mt-4 text-white">

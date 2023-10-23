@@ -8,7 +8,7 @@ export default function SignUp() {
       </h2>
       <section className="flex gap-2">
         <section className="flex flex-col p-2 w-2/4">
-          <label htmlFor="firstName" className="text-lg p-2">
+          <label htmlFor="firstName" className="text-lg">
             First name
           </label>
           <input
@@ -23,7 +23,7 @@ export default function SignUp() {
           />
         </section>
         <section className="flex flex-col p-2 w-2/4">
-          <label htmlFor="lastName" className="text-lg p-2">
+          <label htmlFor="lastName" className="text-lg">
             Last name
           </label>
           <input
@@ -42,7 +42,7 @@ export default function SignUp() {
       {/*  */}
 
       <section className="flex flex-col p-2">
-        <label htmlFor="email" className="text-lg p-2">
+        <label htmlFor="email" className="text-lg">
           Email
         </label>
         <input
@@ -58,7 +58,7 @@ export default function SignUp() {
 
       {/*  */}
       <section className="flex flex-col p-2">
-        <label htmlFor="password" className="text-lg p-2">
+        <label htmlFor="password" className="text-lg">
           Password
         </label>
         <input
@@ -74,7 +74,7 @@ export default function SignUp() {
       </section>
       {/*  */}
       <section className="flex flex-col p-2">
-        <label htmlFor="password" className="text-lg p-2">
+        <label htmlFor="password" className="text-lg">
           Confirm Password
         </label>
         <input

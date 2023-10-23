@@ -5,7 +5,7 @@ export default function Slider() {
         <span className="text-purple-600">Room</span> available
       </h2>
       <marquee direction="left">
-        <div className="flex gap-4 mt-8 text-white">
+        <div className="flex gap-4 mt-8 text-white tracking-wider">
           <span className="py-1 px-3 bg-purple-600 rounded-2xl">Sport</span>
           <span className="py-1 px-3 bg-purple-600 rounded-2xl">Gaming</span>
           <span className="py-1 px-3 bg-purple-600 rounded-2xl">Pet</span>
@@ -13,7 +13,7 @@ export default function Slider() {
         </div>
       </marquee>
       <marquee direction="right">
-        <div className="flex gap-4 text-white">
+        <div className="flex gap-4 text-white tracking-wider">
           <span className="py-1 px-3 bg-purple-600 rounded-2xl">
             Environment
           </span>
