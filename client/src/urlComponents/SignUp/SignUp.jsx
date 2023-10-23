@@ -74,15 +74,15 @@ export default function SignUp() {
       </section>
       {/*  */}
       <section className="flex flex-col p-2">
-        <label htmlFor="password" className="text-lg">
-          Confirm Password
+        <label htmlFor="confirmPassword" className="text-lg">
+          Confirm password
         </label>
         <input
           required
           min={10}
-          id="password"
+          id="confirmPassword"
           type="password"
-          name="password"
+          name="confirmPassword"
           autoComplete="off"
           placeholder="Enter your confirm password"
           className="p-2 bg-purple-200 rounded-md outline-none"
