@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Rootpage from "../urlComponents/Rootpage/Rootpage";
-import SignIn from "../urlComponents/SignIn/SignIn";
-import SignUp from "../urlComponents/SignUp/SignUp";
+import Rootpage from "../pages/Rootpage/Rootpage";
+import SignIn from "../pages/SignIn/SignIn";
+import SignUp from "../pages/SignUp/SignUp";
 import Error from "../components/Error/Error";
 
 const Router = () => {
