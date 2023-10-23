@@ -2,7 +2,7 @@ import Hero from "../../components/Hero/Hero";
 import NavBar from "../../components/Navbar/NavBar";
 import Slider from "../../components/Slider/Slider";
 
-export default function Rootpage() {
+export default function Root() {
   return (
     <>
       <NavBar />
