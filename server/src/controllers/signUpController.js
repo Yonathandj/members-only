@@ -14,7 +14,7 @@ async function signUpNewuser(req, res, next) {
                 message: error.message,
             });
         }
-        next(err)
+        next(error)
     }
 }
 
