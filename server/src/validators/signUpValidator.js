@@ -16,4 +16,4 @@ const signUpNewUserDataValidation = (data) => {
     }
 }
 
-module.exports = newUserDataValidation;
+module.exports = signUpNewUserDataValidation;

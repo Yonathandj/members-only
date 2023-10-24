@@ -22,7 +22,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch("http://localhost:5172/auth/sign-up", {
+    const response = await fetch("http://localhost:5172/sign-up", {
       method: "POST",
       mode: "cors",
       credentials: "include",
@@ -43,7 +43,7 @@ export default function SignUp() {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Register success",
+        title: "Registration success",
         showConfirmButton: false,
         timer: 2000,
       });
@@ -52,7 +52,7 @@ export default function SignUp() {
       Swal.fire({
         position: "top-end",
         icon: "error",
-        title: "Register failed! Try again",
+        title: "Registration failed. Try again",
         showConfirmButton: false,
         timer: 2000,
       });
