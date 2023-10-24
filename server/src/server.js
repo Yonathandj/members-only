@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGO_URL).catch(error => {
     throw new Error(error)
 });
 
-const authRouter = require('./routes/auth');
+const authRouter = require('./routes/authRoute');
 
 app.use('/auth', authRouter);
 

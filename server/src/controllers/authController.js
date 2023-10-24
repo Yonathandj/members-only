@@ -1,9 +1,11 @@
-const signUpDataValidation = require("../validators/auth");
+const signUpDataValidation = require("../validators/authValidator");
 
-function handleSignUp(req, res) {
+function postSignUp(req, res) {
     try {
         signUpDataValidation(req.body);
-        res.status(200).json(req.body);
+        res.status(200).json({
+            message: 'Registration successful'
+        });
     } catch (error) {
         if (error.statusCode === 400) {
             res.status(400).json({
@@ -14,4 +16,4 @@ function handleSignUp(req, res) {
     }
 }
 
-module.exports = { handleSignUp };
+module.exports = { postSignUp };
