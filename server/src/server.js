@@ -10,9 +10,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
-const signUpRouter = require('./routes/signUp');
+const authRouter = require('./routes/auth');
 
-app.use('/sign-up', signUpRouter);
+app.use('/auth', authRouter);
 
 app.use((err, req, res, next) => {
     res.status(500).json(err)

@@ -1,4 +1,4 @@
-const signUpDataValidation = require("../validators/signUpValidator");
+const signUpDataValidation = require("../validators/auth");
 
 function handleSignUp(req, res) {
     try {
@@ -14,4 +14,4 @@ function handleSignUp(req, res) {
     }
 }
 
-module.exports = handleSignUp;
+module.exports = { handleSignUp };
