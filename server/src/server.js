@@ -11,14 +11,13 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
-
 mongoose.connect(process.env.MONGO_URL).catch(error => {
     throw new Error(error)
 });
 
-const authRouter = require('./routes/authRoute');
+const signUpRouter = require('./routes/signUpRoute');
 
-app.use('/auth', authRouter);
+app.use('/sign-up', signUpRouter);
 
 app.use((err, req, res, next) => {
     res.status(500).json(err)
