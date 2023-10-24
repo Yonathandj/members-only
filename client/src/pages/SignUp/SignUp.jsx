@@ -1,7 +1,12 @@
+import Swal from "sweetalert2";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Form from "../../components/Form/Form";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+
   const [signUpData, setSignUpData] = useState({
     firstName: "",
     lastName: "",
@@ -14,11 +19,10 @@ export default function SignUp() {
   const handleChange = (e) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch("http://localhost:5172/sign-up", {
+    const response = await fetch("http://localhost:5172/auth/sign-up", {
       method: "POST",
       mode: "cors",
       credentials: "include",
@@ -35,8 +39,25 @@ export default function SignUp() {
       password: "",
       confirmPassword: "",
     });
-    const data = await response.json();
-    console.log(data);
+    if (response.ok) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Register success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return navigate("/sign-in");
+    } else {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Register failed! Try again",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+    return;
   };
 
   const content = (
@@ -134,6 +155,6 @@ export default function SignUp() {
   );
 
   return (
-    <Form content={content} handleSubmit={handleSubmit} loading={loading} />
+    <Form content={content} loading={loading} handleSubmit={handleSubmit} />
   );
 }
