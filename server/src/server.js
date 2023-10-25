@@ -7,8 +7,10 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 
 const authConfig = require("./auth/authConfig");
+
 const signUpRouter = require('./routers/signUpRouter');
 const signInRouter = require('./routers/signInRouter');
+const roomRouter = require('./routers/RoomRouter');
 
 authConfig();
 
@@ -32,6 +34,7 @@ mongoose.connect(process.env.MONGO_URL).catch(error => {
 
 app.use('/sign-up', signUpRouter);
 app.use('/sign-in', signInRouter);
+app.use('/rooms', roomRouter);
 
 app.use((error, req, res, next) => {
     res.status(500).json({ error })

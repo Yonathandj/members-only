@@ -8,6 +8,7 @@ const signUpNewUserDataValidatorSchema = Joi.object({
     email: Joi.string().trim().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).normalize().required(),
     password: Joi.string().trim().min(10).required(),
     confirmPassword: Joi.ref('password'),
+    isAdmin: Joi.boolean()
 })
 
 const signUpNewUserDataValidation = (data) => {

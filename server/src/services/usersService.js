@@ -4,7 +4,7 @@ const { nanoid } = require('nanoid');
 const invariantError = require('../errors/invariantError');
 const userModel = require('../models/usersModel');
 
-async function addNewUser({ firstName, lastName, email, password }) {
+async function addNewUser({ firstName, lastName, email, password, isAdmin }) {
     const userExist = await userModel.findOne({ firstName, lastName }).exec();
     if (userExist) {
         throw new invariantError("User already exist", 400);
@@ -16,7 +16,8 @@ async function addNewUser({ firstName, lastName, email, password }) {
         firstName,
         lastName,
         email,
-        hashPassword
+        hashPassword,
+        isAdmin
     })
     return await newUser.save();
 }
