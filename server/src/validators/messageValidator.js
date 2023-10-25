@@ -2,6 +2,8 @@ const Joi = require('joi');
 const invariantError = require('../errors/invariantError');
 
 const messageValidatorSchema = Joi.object({
+    userId: Joi.string().trim().required(),
+    roomId: Joi.string().trim.required(),
     message: Joi.string().trim().required()
 })
 

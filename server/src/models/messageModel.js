@@ -4,6 +4,14 @@ const messageModelSchema = new mongoose.Schema({
     _id: {
         type: String,
     },
+    userId: {
+        type: String,
+        ref: 'users'
+    },
+    roomId: {
+        type: String,
+        ref: 'rooms'
+    },
     message: {
         type: String,
         required: true
