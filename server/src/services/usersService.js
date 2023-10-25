@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const { nanoid } = require('nanoid');
 
 const invariantError = require('../errors/invariantError');
@@ -10,13 +10,7 @@ async function addNewUser({ firstName, lastName, email, password }) {
         throw new invariantError("User already exist", 400);
     }
     const _id = `user-${nanoid(16)}`;
-    let hashPassword;
-    await bcrypt.hash(password, 10, (err, hashPassword) => {
-        if (err) {
-            throw new Error(err);
-        }
-        hashPassword = hashPassword;
-    });
+    const hashPassword = await bcrypt.hash(password, 10);
     const newUser = new userModel({
         _id,
         firstName,
