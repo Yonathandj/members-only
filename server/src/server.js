@@ -12,7 +12,7 @@ const signUpRouter = require('./routers/signUpRouter');
 const signInRouter = require('./routers/signInRouter');
 const roomRouter = require('./routers/roomRouter');
 const messageRouter = require('./routers/messageRouter');
-
+const logOutRouter = require('./routers/logOutRouter');
 
 authConfig();
 
@@ -38,6 +38,7 @@ app.use('/sign-up', signUpRouter);
 app.use('/sign-in', signInRouter);
 app.use('/rooms', roomRouter);
 app.use('/messages', messageRouter);
+app.use('/log-out', logOutRouter);
 
 app.use((error, req, res, next) => {
     return res.status(500).json({ error })
