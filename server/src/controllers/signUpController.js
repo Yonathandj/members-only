@@ -6,7 +6,7 @@ async function handleSignUp(req, res, next) {
         const value = signUpNewUserDataValidation(req.body);
         await addNewUser(value);
         res.status(200).json({
-            message: 'Registration successful'
+            message: 'Registration success',
         });
     } catch (error) {
         if (error.statusCode === 400) {

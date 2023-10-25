@@ -15,12 +15,9 @@ mongoose.connect(process.env.MONGO_URL).catch(error => {
     throw new Error(error)
 });
 
-const signUpRouter = require('./routes/signUpRoute');
-const singInRouter = require('./routes/SignInRoute');
-
+const signUpRouter = require('./routers/signUpRouter');
 
 app.use('/sign-up', signUpRouter);
-app.use('/sign-in', singInRouter);
 
 app.use((error, req, res, next) => {
     res.status(500).json({ error })
