@@ -28,7 +28,9 @@ export default function SignIn() {
       email: "",
       password: "",
     });
+    const data = await response.json();
     console.log(response);
+    console.log(data);
     return;
   };
 

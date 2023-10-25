@@ -2,22 +2,36 @@ require('dotenv').config();
 
 const cors = require('cors');
 const express = require('express');
+const passport = require('passport');
 const mongoose = require('mongoose');
+const session = require('express-session');
+
+const authConfig = require("./auth/authConfig");
+const signUpRouter = require('./routers/signUpRouter');
+const signInRouter = require('./routers/signInRouter');
+
+authConfig();
 
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
+    crendentials: true
 }));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
+
 mongoose.connect(process.env.MONGO_URL).catch(error => {
     throw new Error(error)
 });
 
-const signUpRouter = require('./routers/signUpRouter');
-
 app.use('/sign-up', signUpRouter);
+app.use('/sign-in', signInRouter);
 
 app.use((error, req, res, next) => {
     res.status(500).json({ error })
