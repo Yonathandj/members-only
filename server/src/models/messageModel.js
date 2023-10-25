@@ -6,11 +6,11 @@ const messageModelSchema = new mongoose.Schema({
     },
     userId: {
         type: String,
-        ref: 'users'
+        ref: 'user'
     },
     roomId: {
         type: String,
-        ref: 'rooms'
+        ref: 'room'
     },
     message: {
         type: String,
