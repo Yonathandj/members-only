@@ -10,7 +10,9 @@ const authConfig = require("./auth/authConfig");
 
 const signUpRouter = require('./routers/signUpRouter');
 const signInRouter = require('./routers/signInRouter');
-const roomRouter = require('./routers/RoomRouter');
+const roomRouter = require('./routers/roomRouter');
+const messageRouter = require('./routers/messageRouter');
+
 
 authConfig();
 
@@ -35,9 +37,10 @@ mongoose.connect(process.env.MONGO_URL).catch(error => {
 app.use('/sign-up', signUpRouter);
 app.use('/sign-in', signInRouter);
 app.use('/rooms', roomRouter);
+app.use('/messages', messageRouter);
 
 app.use((error, req, res, next) => {
-    res.status(500).json({ error })
+    return res.status(500).json({ error })
 })
 app.listen(process.env.SERVER_PORT, () => {
     console.log(`server is running on port:${process.env.SERVER_PORT}`)
