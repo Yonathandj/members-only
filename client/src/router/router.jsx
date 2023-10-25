@@ -1,15 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Root from "../pages/Root/Root";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import Error from "../components/Error/Error";
+import Landingpage from "../pages/Landingpage/Landingpage";
 
 const Router = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root />,
+      element: <Landingpage />,
       errorElement: <Error />,
     },
     {

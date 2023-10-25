@@ -1,7 +1,7 @@
 const { addNewUser } = require("../services/usersService");
 const signUpNewUserDataValidation = require("../validators/signUpValidator");
 
-async function signUpNewuser(req, res, next) {
+async function handleSignUp(req, res, next) {
     try {
         const value = signUpNewUserDataValidation(req.body);
         await addNewUser(value);
@@ -18,4 +18,4 @@ async function signUpNewuser(req, res, next) {
     }
 }
 
-module.exports = { signUpNewuser };
+module.exports = { handleSignUp };

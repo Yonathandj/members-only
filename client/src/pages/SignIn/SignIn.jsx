@@ -6,17 +6,30 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setSignInData({ ...signInData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    const response = await fetch("http://localhost:5172/sign-in", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signInData),
+    });
+    setLoading(false);
     setSignInData({
       email: "",
       password: "",
     });
+    console.log(response);
+    return;
   };
 
   const content = (
@@ -59,5 +72,7 @@ export default function SignIn() {
     </>
   );
 
-  return <Form content={content} handleSubmit={handleSubmit} />;
+  return (
+    <Form content={content} handleSubmit={handleSubmit} loading={loading} />
+  );
 }

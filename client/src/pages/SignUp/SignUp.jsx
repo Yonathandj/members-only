@@ -25,7 +25,6 @@ export default function SignUp() {
     const response = await fetch("http://localhost:5172/sign-up", {
       method: "POST",
       mode: "cors",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,6 +38,7 @@ export default function SignUp() {
       password: "",
       confirmPassword: "",
     });
+    const data = await response.json();
     if (response.ok) {
       Swal.fire({
         position: "top-end",
@@ -54,9 +54,9 @@ export default function SignUp() {
       Swal.fire({
         position: "top-end",
         icon: "error",
-        title: "Registration failed. Try again",
+        title: `Registration failed! ${data?.message}`,
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       });
     }
     return;
@@ -73,9 +73,9 @@ export default function SignUp() {
             First name
           </label>
           <input
-            minLength={3}
             required
             type="text"
+            minLength={3}
             id="firstName"
             name="firstName"
             autoComplete="off"

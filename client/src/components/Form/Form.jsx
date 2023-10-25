@@ -12,6 +12,12 @@ export default function Form({ content, handleSubmit, loading }) {
           {loading ? (
             <>
               <button
+                disabled="disabled"
+                className="rounded-2xl bg-purple-400 px-3 py-1"
+              >
+                <Link to={"/"}>Cancel</Link>
+              </button>
+              <button
                 className="rounded-2xl bg-purple-400 px-3 py-1"
                 type="submit"
                 disabled
