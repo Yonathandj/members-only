@@ -1,4 +1,4 @@
-const { addNewUser } = require("../services/usersService");
+const { addNewUser } = require("../services/userService");
 const signUpNewUserDataValidation = require("../validators/signUpValidator");
 
 async function handleSignUp(req, res, next) {

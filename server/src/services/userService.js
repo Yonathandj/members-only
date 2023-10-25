@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const { nanoid } = require('nanoid');
 
 const invariantError = require('../errors/invariantError');
-const userModel = require('../models/usersModel');
+const userModel = require('../models/userModel');
 
 async function addNewUser({ firstName, lastName, email, password, isAdmin }) {
     const userExist = await userModel.findOne({ firstName, lastName }).exec();

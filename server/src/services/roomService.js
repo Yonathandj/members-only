@@ -1,6 +1,6 @@
 const { nanoid } = require('nanoid');
 
-const roomModel = require('../models/roomsModel');
+const roomModel = require('../models/roomModel');
 const invariantError = require('../errors/invariantError');
 const notFoundError = require('../errors/notFoundError');
 

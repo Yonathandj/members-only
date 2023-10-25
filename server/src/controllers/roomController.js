@@ -1,4 +1,4 @@
-const { addNewRoom, getAllRooms, editRoom } = require("../services/roomsService");
+const { addNewRoom, getAllRooms, editRoom } = require("../services/roomService");
 const roomDataValidation = require("../validators/roomValidator")
 
 async function handleAddNewRoom(req, res, next) {
