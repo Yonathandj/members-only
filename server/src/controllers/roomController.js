@@ -9,7 +9,7 @@ async function handleAddNewRoom(req, res, next) {
             message: 'Room created successfully'
         })
     } catch (error) {
-        if (error.statusCode(400)) {
+        if (error.statusCode === 400) {
             res.status(400).json({
                 message: error.message
             })

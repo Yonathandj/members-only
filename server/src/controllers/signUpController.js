@@ -3,8 +3,17 @@ const signUpNewUserDataValidation = require("../validators/signUpValidator");
 
 async function handleSignUp(req, res, next) {
     try {
-        req.body.isAdmin === process.env.ADMIN_CODE ? { ...req.body, isAdmin: true } : { ...req.body, isAdmin: false }
-        const value = signUpNewUserDataValidation(req.body);
+        let data;
+        if (req.body.isAdmin === process.env.ADMIN_CODE) {
+            data = {
+                ...req.body, isAdmin: true
+            }
+        } else {
+            data = {
+                ...req.body, isAdmin: false
+            }
+        }
+        const value = signUpNewUserDataValidation(data);
         await addNewUser(value);
         res.status(200).json({
             message: 'Registration success',
