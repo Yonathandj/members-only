@@ -1,6 +1,6 @@
 function handleLoginAuthentication(req, res, next) {
     try {
-        res.status(200).json({
+        return res.status(200).json({
             user: {
                 id: req.user._id,
                 isAdmin: req.user.isAdmin

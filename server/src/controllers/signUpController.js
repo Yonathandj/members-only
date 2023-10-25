@@ -15,12 +15,12 @@ async function handleSignUp(req, res, next) {
         }
         const value = signUpNewUserDataValidation(data);
         await addNewUser(value);
-        res.status(200).json({
+        return res.status(200).json({
             message: 'Registration success',
         });
     } catch (error) {
         if (error.statusCode === 400) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: error.message,
             });
         }
