@@ -45,16 +45,18 @@ export default function SignUp() {
         icon: "success",
         title: "Registration success",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1500,
       });
-      return navigate("/sign-in");
+      setTimeout(() => {
+        return navigate("/sign-in");
+      }, 1500);
     } else {
       Swal.fire({
         position: "top-end",
         icon: "error",
         title: "Registration failed. Try again",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1500,
       });
     }
     return;
@@ -91,7 +93,7 @@ export default function SignUp() {
             required
             type="text"
             id="lastName"
-            minLength={5}
+            minLength={3}
             name="lastName"
             autoComplete="off"
             onChange={handleChange}

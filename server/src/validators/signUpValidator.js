@@ -1,19 +1,21 @@
-const invariantError = require('../errors/invariantError');
 const Joi = require('joi');
 
+const invariantError = require('../errors/invariantError');
+
 const signUpNewUserDataValidatorSchema = Joi.object({
-    firstName: Joi.string().min(3).trim().required(),
-    lastName: Joi.string().min(5).trim().required(),
-    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).trim().normalize().required(),
-    password: Joi.string().min(10).trim().normalize().required(),
+    firstName: Joi.string().trim().min(3).required(),
+    lastName: Joi.string().trim().min(3).required(),
+    email: Joi.string().trim().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+    password: Joi.string().trim().min(10).required(),
     confirmPassword: Joi.ref('password'),
 })
 
 const signUpNewUserDataValidation = (data) => {
-    const { error } = signUpNewUserDataValidatorSchema.validate(data);
+    const { value, error } = signUpNewUserDataValidatorSchema.validate(data);
     if (error) {
         throw new invariantError(error.message, 400);
     }
+    return value;
 }
 
 module.exports = signUpNewUserDataValidation;

@@ -19,8 +19,8 @@ const signUpRouter = require('./routes/signUpRoute');
 
 app.use('/sign-up', signUpRouter);
 
-app.use((err, req, res, next) => {
-    res.status(500).json({ err })
+app.use((error, req, res, next) => {
+    res.status(500).json({ error })
 })
 app.listen(process.env.SERVER_PORT, () => {
     console.log(`server is running on port:${process.env.SERVER_PORT}`)

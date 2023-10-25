@@ -3,8 +3,8 @@ const signUpNewUserDataValidation = require("../validators/signUpValidator");
 
 async function signUpNewuser(req, res, next) {
     try {
-        signUpNewUserDataValidation(req.body);
-        await addNewUser(req.body);
+        const value = signUpNewUserDataValidation(req.body);
+        await addNewUser(value);
         res.status(200).json({
             message: 'Registration successful'
         });
