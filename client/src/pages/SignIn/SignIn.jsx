@@ -1,44 +1,40 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { swalFire } from "../../lib/swalFire";
-
+import useAuth from "../../hooks/useAuth";
 import Form from "../../components/Form/Form";
 import { authContext } from "../../context/AuthProvider";
 
 export default function SignIn() {
   const navigate = useNavigate();
   const { handleSetUser } = useContext(authContext);
+
   const [signInData, setSignInData] = useState({
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState(false);
+
+  const { response, loading, error, signIn } = useAuth();
+
   const handleChange = (e) => {
     setSignInData({ ...signInData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    const response = await fetch("http://localhost:5172/sign-in", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signInData),
-    });
-    setLoading(false);
+    await signIn(signInData);
     setSignInData({
       email: "",
       password: "",
     });
-    const user = await response.json();
-    const isSuccess = swalFire(response);
-    if (isSuccess) {
+    if (response) {
       navigate("/rooms");
-      handleSetUser({ userId: user.user.userId, isAdmin: user.user.isAdmin });
+      return handleSetUser({
+        userId: response.user.userId,
+        isAdmin: response.user.isAdmin,
+      });
     }
+    return;
   };
 
   const content = (
@@ -82,6 +78,11 @@ export default function SignIn() {
   );
 
   return (
-    <Form content={content} handleSubmit={handleSubmit} loading={loading} />
+    <Form
+      error={error}
+      content={content}
+      loading={loading}
+      handleSubmit={handleSubmit}
+    />
   );
 }

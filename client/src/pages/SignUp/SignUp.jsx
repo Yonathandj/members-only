@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import Form from "../../components/Form/Form";
-import { swalFire } from "../../lib/swalFire";
+import useAuth from "../../hooks/useAuth";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -13,22 +13,16 @@ export default function SignUp() {
     password: "",
     confirmPassword: "",
   });
-  const [loading, setLoading] = useState(false);
+
+  const { response, loading, error, signUp } = useAuth();
+
   const handleChange = (e) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    const response = await fetch("http://localhost:5172/sign-up", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signUpData),
-    });
-    setLoading(false);
+    await signUp(signUpData);
     setSignUpData({
       firstName: "",
       lastName: "",
@@ -36,8 +30,10 @@ export default function SignUp() {
       password: "",
       confirmPassword: "",
     });
-    const isSuccess = swalFire(response);
-    isSuccess && navigate("/sign-in");
+    if (response) {
+      return navigate("/sign-in");
+    }
+    return;
   };
 
   const content = (
@@ -135,6 +131,11 @@ export default function SignUp() {
   );
 
   return (
-    <Form content={content} loading={loading} handleSubmit={handleSubmit} />
+    <Form
+      error={error}
+      content={content}
+      loading={loading}
+      handleSubmit={handleSubmit}
+    />
   );
 }
