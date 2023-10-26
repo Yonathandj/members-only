@@ -11,19 +11,18 @@ export default function useAuth() {
             const response = await fetch("http://localhost:5172/sign-up", {
                 mode: "cors",
                 method: "POST",
-                credentials: 'include',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
             if (!response.ok) {
-                throw new Error(response.message);
+                const res = await response.json();
+                throw new Error(res.message);
             }
             const res = await response.json();
             setResponse(res);
         } catch (error) {
-            setError(error.message);
+            setError(error);
         } finally {
-            setError(null);
             setLoading(false);
         }
     }
@@ -34,19 +33,18 @@ export default function useAuth() {
             const response = await fetch("http://localhost:5172/sign-in", {
                 mode: "cors",
                 method: "POST",
-                credentials: 'include',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
             if (!response.ok) {
-                throw new Error(response.message);
+                const res = await response.json();
+                throw new Error(res.message);
             }
             const res = await response.json();
             setResponse(res);
         } catch (error) {
-            setError(error.message);
+            setError(error);
         } finally {
-            setError(null);
             setLoading(false);
         }
     }
@@ -62,16 +60,16 @@ export default function useAuth() {
                 body: JSON.stringify(data),
             });
             if (!response.ok) {
-                throw new Error(response.message);
+                const res = await response.json();
+                throw new Error(res.message);
             }
             const res = await response.json();
             setResponse(res);
         } catch (error) {
-            setError(error.message);
+            setError(error);
         } finally {
-            setError(null);
             setLoading(false);
         }
     }
-    return { response, loading, error, signUp, signIn, logOut }
+    return { response, loading, error, setError, signUp, signIn, logOut }
 }

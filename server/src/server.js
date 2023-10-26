@@ -41,7 +41,9 @@ app.use('/messages', messageRouter);
 app.use('/log-out', logOutRouter);
 
 app.use((error, req, res, next) => {
-    return res.status(500).json({ error })
+    return res.status(500).json({
+        message: error
+    })
 })
 app.listen(process.env.SERVER_PORT, () => {
     console.log(`server is running on port:${process.env.SERVER_PORT}`)

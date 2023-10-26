@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 import Form from "../../components/Form/Form";
 import useAuth from "../../hooks/useAuth";
@@ -14,7 +15,7 @@ export default function SignUp() {
     confirmPassword: "",
   });
 
-  const { response, loading, error, signUp } = useAuth();
+  const { response, loading, error, setError, signUp } = useAuth();
 
   const handleChange = (e) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
@@ -30,11 +31,25 @@ export default function SignUp() {
       password: "",
       confirmPassword: "",
     });
-    if (response) {
-      return navigate("/sign-in");
-    }
     return;
   };
+
+  if (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Ooops... Something went wrong!",
+      text: error,
+    });
+    setError(null);
+  }
+  if (response) {
+    Swal.fire({
+      icon: "success",
+      title: "Success",
+      text: response.message,
+    });
+    navigate("/sign-in");
+  }
 
   const content = (
     <>
@@ -131,12 +146,6 @@ export default function SignUp() {
   );
 
   return (
-    <Form
-      error={error}
-      content={content}
-      loading={loading}
-      response={response}
-      handleSubmit={handleSubmit}
-    />
+    <Form content={content} loading={loading} handleSubmit={handleSubmit} />
   );
 }

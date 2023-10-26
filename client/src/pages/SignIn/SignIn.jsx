@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 import useAuth from "../../hooks/useAuth";
 import Form from "../../components/Form/Form";
@@ -14,12 +15,11 @@ export default function SignIn() {
     password: "",
   });
 
-  const { response, loading, error, signIn } = useAuth();
+  const { response, loading, error, setError, signIn } = useAuth();
 
   const handleChange = (e) => {
     setSignInData({ ...signInData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signIn(signInData);
@@ -27,15 +27,29 @@ export default function SignIn() {
       email: "",
       password: "",
     });
-    if (response) {
-      navigate("/rooms");
-      return handleSetUser({
-        userId: response.user.userId,
-        isAdmin: response.user.isAdmin,
-      });
-    }
     return;
   };
+
+  if (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Ooops... Something went wrong!",
+      text: "Retry again! Password or email may be incorrect",
+    });
+    setError(null);
+  }
+  if (response) {
+    handleSetUser({
+      userId: response.user.userId,
+      isAdmin: response.user.isAdmin,
+    });
+    navigate("/rooms");
+    Swal.fire({
+      icon: "success",
+      title: "Success",
+      text: response.message,
+    });
+  }
 
   const content = (
     <>
@@ -78,12 +92,6 @@ export default function SignIn() {
   );
 
   return (
-    <Form
-      error={error}
-      content={content}
-      loading={loading}
-      response={response}
-      handleSubmit={handleSubmit}
-    />
+    <Form content={content} loading={loading} handleSubmit={handleSubmit} />
   );
 }
