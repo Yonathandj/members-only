@@ -1,12 +1,11 @@
-import Swal from "sweetalert2";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import Form from "../../components/Form/Form";
+import { swalFire } from "../../lib/swalFire";
 
 export default function SignUp() {
   const navigate = useNavigate();
-
   const [signUpData, setSignUpData] = useState({
     firstName: "",
     lastName: "",
@@ -15,7 +14,6 @@ export default function SignUp() {
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
-
   const handleChange = (e) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
@@ -38,28 +36,8 @@ export default function SignUp() {
       password: "",
       confirmPassword: "",
     });
-    const data = await response.json();
-    if (response.ok) {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Registration success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setTimeout(() => {
-        return navigate("/sign-in");
-      }, 1500);
-    } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: `Registration failed! ${data?.message}`,
-        showConfirmButton: false,
-        timer: 2000,
-      });
-    }
-    return;
+    const isSuccess = swalFire(response);
+    isSuccess && navigate("/sign-in");
   };
 
   const content = (

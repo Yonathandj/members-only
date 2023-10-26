@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { swalFire } from "../../lib/swalFire";
+
 import Form from "../../components/Form/Form";
+import { authContext } from "../../context/AuthProvider";
 
 export default function SignIn() {
+  const navigate = useNavigate();
+  const { handleSetUser } = useContext(authContext);
   const [signInData, setSignInData] = useState({
     email: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
-
   const handleChange = (e) => {
     setSignInData({ ...signInData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -28,10 +33,12 @@ export default function SignIn() {
       email: "",
       password: "",
     });
-    const data = await response.json();
-    console.log(response);
-    console.log(data);
-    return;
+    const user = await response.json();
+    const isSuccess = swalFire(response);
+    if (isSuccess) {
+      navigate("/rooms");
+      handleSetUser({ userId: user.user.userId, isAdmin: user.user.isAdmin });
+    }
   };
 
   const content = (
