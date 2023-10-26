@@ -23,7 +23,6 @@ export default function AuthContext({ children }) {
       setUser(activeUser)
     }
   }, []);
-  console.log(user);
   return (
     <authContext.Provider value={{ user, handleSetUser }}>
       {children}

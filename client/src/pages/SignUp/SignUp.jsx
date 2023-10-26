@@ -135,6 +135,7 @@ export default function SignUp() {
       error={error}
       content={content}
       loading={loading}
+      response={response}
       handleSubmit={handleSubmit}
     />
   );

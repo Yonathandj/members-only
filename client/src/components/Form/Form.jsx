@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-export default function Form({ content, handleSubmit, loading }) {
+export default function Form({
+  content,
+  handleSubmit,
+  loading,
+  error,
+  response,
+}) {
+  error
+    ? Swal.fire({
+        icon: "error",
+        title: "Ooops... Something went wrong!",
+        text: error,
+      })
+    : Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: response.message,
+      });
   return (
     <>
       <form
@@ -9,35 +27,16 @@ export default function Form({ content, handleSubmit, loading }) {
       >
         {content}
         <section className="mt-4 flex gap-2 text-white">
-          {loading ? (
-            <>
-              <button
-                disabled="disabled"
-                className="rounded-2xl bg-purple-400 px-3 py-1"
-              >
-                <Link to={"/"}>Cancel</Link>
-              </button>
-              <button
-                className="rounded-2xl bg-purple-400 px-3 py-1"
-                type="submit"
-                disabled
-              >
-                Submit
-              </button>
-            </>
-          ) : (
-            <>
-              <Link to={"/"} className="rounded-2xl bg-purple-600 px-3 py-1">
-                Cancel
-              </Link>
-              <button
-                className="rounded-2xl bg-purple-600 px-3 py-1"
-                type="submit"
-              >
-                Submit
-              </button>
-            </>
-          )}
+          <Link to={"/"} className="rounded-2xl bg-purple-600 px-3 py-1">
+            Cancel
+          </Link>
+          <button
+            className="rounded-2xl bg-purple-600 px-3 py-1"
+            type="submit"
+            disabled={loading}
+          >
+            Submit
+          </button>
         </section>
       </form>
     </>

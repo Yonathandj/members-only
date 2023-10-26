@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function useAuth() {
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState(null);
 
     const signUp = async (data) => {
         try {
@@ -16,14 +16,14 @@ export default function useAuth() {
                 body: JSON.stringify(data),
             });
             if (!response.ok) {
-                throw new Error('error occured');
+                throw new Error(response.message);
             }
             const res = await response.json();
             setResponse(res);
         } catch (error) {
-            setError(true);
+            setError(error.message);
         } finally {
-            setError(false);
+            setError(null);
             setLoading(false);
         }
     }
@@ -39,14 +39,14 @@ export default function useAuth() {
                 body: JSON.stringify(data),
             });
             if (!response.ok) {
-                throw new Error('error occured');
+                throw new Error(response.message);
             }
             const res = await response.json();
             setResponse(res);
         } catch (error) {
-            setError(true);
+            setError(error.message);
         } finally {
-            setError(false);
+            setError(null);
             setLoading(false);
         }
     }
@@ -62,14 +62,14 @@ export default function useAuth() {
                 body: JSON.stringify(data),
             });
             if (!response.ok) {
-                throw new Error('error occured');
+                throw new Error(response.message);
             }
             const res = await response.json();
             setResponse(res);
         } catch (error) {
-            setError(true);
+            setError(error.message);
         } finally {
-            setError(false);
+            setError(null);
             setLoading(false);
         }
     }
