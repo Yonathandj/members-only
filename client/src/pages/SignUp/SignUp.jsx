@@ -2,25 +2,29 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+
 import Form from "../../components/Form/Form";
 import useAuth from "../../hooks/useAuth";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  
   const [signUpData, setSignUpData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
+    isAdmin: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { response, loading, error, setError, signUp } = useAuth();
-
   const handleChange = (e) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await signUp(signUpData);
@@ -30,6 +34,7 @@ export default function SignUp() {
       email: "",
       password: "",
       confirmPassword: "",
+      isAdmin: "",
     });
     return;
   };
@@ -108,7 +113,7 @@ export default function SignUp() {
           className="rounded-md bg-purple-200 p-2 outline-none"
         />
       </section>
-      <section className="flex flex-col p-2">
+      <section className="relative flex flex-col p-2">
         <label htmlFor="password" className="text-lg">
           Password
         </label>
@@ -116,29 +121,68 @@ export default function SignUp() {
           required
           id="password"
           minLength={10}
-          type="password"
           name="password"
           autoComplete="off"
           onChange={handleChange}
           value={signUpData.password}
           placeholder="Enter your password"
+          type={showPassword ? "text" : "password"}
           className="rounded-md bg-purple-200 p-2 outline-none"
         />
+        {showPassword ? (
+          <EyeIcon
+            className="absolute right-4 top-11 w-6"
+            onClick={() => setShowPassword(!showPassword)}
+          />
+        ) : (
+          <EyeSlashIcon
+            className="absolute right-4 top-11 w-6"
+            onClick={() => setShowPassword(!showPassword)}
+          />
+        )}
       </section>
-      <section className="flex flex-col p-2">
+      <section className="flex flex-col p-2 relative">
         <label htmlFor="confirmPassword" className="text-lg">
           Confirm password
         </label>
         <input
           required
           minLength={10}
-          type="password"
           autoComplete="off"
           id="confirmPassword"
           name="confirmPassword"
           onChange={handleChange}
           value={signUpData.confirmPassword}
           placeholder="Enter your confirm password"
+          type={showConfirmPassword ? "text" : "password"}
+          className="rounded-md bg-purple-200 p-2 outline-none"
+        />
+        {showConfirmPassword ? (
+          <EyeIcon
+            className="absolute right-4 top-11 w-6"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          />
+        ) : (
+          <EyeSlashIcon
+            className="absolute right-4 top-11 w-6"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          />
+        )}
+      </section>
+      <br />
+      <hr />
+      <section className="flex flex-col p-2">
+        <label htmlFor="isAdmin" className="text-lg">
+          Admin code
+        </label>
+        <input
+          type="text"
+          autoComplete="off"
+          id="isAdmin"
+          name="isAdmin"
+          onChange={handleChange}
+          value={signUpData.isAdmin}
+          placeholder="Enter your admin code"
           className="rounded-md bg-purple-200 p-2 outline-none"
         />
       </section>
