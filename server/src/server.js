@@ -5,6 +5,7 @@ const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const mongoStore = require('connect-mongo');
 
 const authConfig = require("./auth/authConfig");
 
@@ -26,6 +27,10 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: mongoStore.create({
+        mongoUrl: process.env.MONGO_URL,
+        collectionName: 'sessions',
+    })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
