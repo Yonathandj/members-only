@@ -38,9 +38,9 @@ export default function NavBar() {
   }
   if (loading) {
     Swal.fire({
-      icon: "info",
       title: "Logout...",
       text: "Please wait to logout!",
+      showConfirmButton: false
     });
   }
 

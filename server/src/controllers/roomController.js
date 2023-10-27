@@ -1,4 +1,4 @@
-const { addNewRoom, getAllRooms, editRoom } = require("../services/roomService");
+const { addNewRoom, getAllRooms, editRoom, deleteRoom } = require("../services/roomService");
 const roomDataValidation = require("../validators/roomValidator")
 
 async function handleAddNewRoom(req, res, next) {
@@ -23,9 +23,7 @@ async function handleGetAllRooms(req, res, next) {
         const rooms = await getAllRooms();
         return res.status(200).json({
             message: 'All rooms',
-            data: {
-                rooms
-            }
+            rooms
         })
     } catch (error) {
         next(error)

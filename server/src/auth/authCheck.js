@@ -1,5 +1,5 @@
 function isAuthenticated(req, res, next) {
-    if (req.isAuthenticated() && req.user._id === req.body.userId) {
+    if (req.isAuthenticated()) {
         next()
     } else {
         return res.status(401).json({
