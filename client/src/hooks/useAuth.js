@@ -33,6 +33,7 @@ export default function useAuth() {
             const response = await fetch("http://localhost:5172/sign-in", {
                 mode: "cors",
                 method: "POST",
+                credentials: 'include',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
@@ -71,5 +72,5 @@ export default function useAuth() {
             setLoading(false);
         }
     }
-    return { response, loading, error, setError, signUp, signIn, logOut }
+    return { response, setResponse, loading, error, setError, signUp, signIn, logOut }
 }

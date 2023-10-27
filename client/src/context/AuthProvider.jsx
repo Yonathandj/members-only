@@ -17,14 +17,21 @@ export default function AuthContext({ children }) {
     setUser({ userId, isAdmin });
     localStorage.setItem("activeUser", JSON.stringify({ userId, isAdmin }));
   };
+  const handleDeleteUser = () => {
+    setUser({
+      userId: null,
+      isAdmin: null,
+    });
+    localStorage.removeItem("activeUser");
+  };
   useEffect(() => {
     const activeUser = JSON.parse(localStorage.getItem("activeUser"));
     if (activeUser) {
-      setUser(activeUser)
+      setUser(activeUser);
     }
   }, []);
   return (
-    <authContext.Provider value={{ user, handleSetUser }}>
+    <authContext.Provider value={{ user, handleSetUser, handleDeleteUser }}>
       {children}
     </authContext.Provider>
   );

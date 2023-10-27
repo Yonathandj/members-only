@@ -14,13 +14,14 @@ const roomRouter = require('./routers/roomRouter');
 const messageRouter = require('./routers/messageRouter');
 const logOutRouter = require('./routers/logOutRouter');
 
+const app = express();
 authConfig();
 
-const app = express();
-
 app.use(cors({
-    crendentials: true
+    origin: 'http://localhost:5173',
+    credentials: true
 }));
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -42,7 +43,7 @@ app.use('/log-out', logOutRouter);
 
 app.use((error, req, res, next) => {
     return res.status(500).json({
-        message: error
+        message: error.message
     })
 })
 app.listen(process.env.SERVER_PORT, () => {

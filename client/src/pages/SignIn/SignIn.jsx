@@ -11,6 +11,7 @@ import { authContext } from "../../context/AuthProvider";
 export default function SignIn() {
   const navigate = useNavigate();
   const { handleSetUser } = useContext(authContext);
+  const { response, loading, error, setError, signIn } = useAuth();
 
   const [signInData, setSignInData] = useState({
     email: "",
@@ -18,7 +19,6 @@ export default function SignIn() {
   });
   const [showPassword, setShowPassword] = useState(false);
 
-  const { response, loading, error, setError, signIn } = useAuth();
   const handleChange = (e) => {
     setSignInData({ ...signInData, [e.target.name]: e.target.value });
   };
@@ -35,7 +35,7 @@ export default function SignIn() {
   if (error) {
     Swal.fire({
       icon: "error",
-      title: "Ooops... Something went wrong!",
+      title: "Something went wrong!",
       text: "Retry again! Password or email may be incorrect",
     });
     setError(null);
@@ -45,12 +45,12 @@ export default function SignIn() {
       userId: response.user.userId,
       isAdmin: response.user.isAdmin,
     });
-    navigate("/rooms");
     Swal.fire({
       icon: "success",
       title: "Success",
       text: response.message,
     });
+    navigate("/rooms");
   }
 
   const content = (

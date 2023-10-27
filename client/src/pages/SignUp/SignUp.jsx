@@ -9,7 +9,8 @@ import useAuth from "../../hooks/useAuth";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  
+  const { response, loading, error, setError, signUp } = useAuth();
+
   const [signUpData, setSignUpData] = useState({
     firstName: "",
     lastName: "",
@@ -21,7 +22,6 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const { response, loading, error, setError, signUp } = useAuth();
   const handleChange = (e) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
@@ -141,7 +141,7 @@ export default function SignUp() {
           />
         )}
       </section>
-      <section className="flex flex-col p-2 relative">
+      <section className="relative flex flex-col p-2">
         <label htmlFor="confirmPassword" className="text-lg">
           Confirm password
         </label>
