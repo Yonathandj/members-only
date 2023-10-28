@@ -1,4 +1,6 @@
+const { addNewMessage } = require('../services/messageService')
 const messageDataValidation = require("../validators/messageValidator")
+
 
 async function handlePostMessage(req, res, next) {
     try {

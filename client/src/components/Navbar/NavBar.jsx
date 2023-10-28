@@ -47,7 +47,7 @@ export default function NavBar() {
   return (
     <header>
       <nav className="flex flex-col items-center justify-around gap-6 p-6 sm:flex-row sm:gap-0">
-        <Link to={"/"} className="flex gap-2 text-3xl font-bold">
+        <Link to={user.userId ? "" : '/'} className="flex gap-2 text-3xl font-bold">
           <span className="text-purple-600">Members</span>
           <span>Only</span>
         </Link>
