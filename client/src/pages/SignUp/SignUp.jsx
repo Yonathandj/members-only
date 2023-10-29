@@ -1,15 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import Swal from "sweetalert2";
-
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-
+import { useState } from "react";
+import useFetch from "../../hooks/useFetch";
+import useSwalFire from "../../hooks/useSwalFire";
+import useNavigation from "../../hooks/useNavigation";
 import Form from "../../components/Form/Form";
-import useAuth from "../../hooks/useAuth";
 
 export default function SignUp() {
-  const navigate = useNavigate();
-  const { response, loading, error, setError, signUp } = useAuth();
+  const { response, loading, error, setError, fetcher } = useFetch();
+  const { navigation } = useNavigation();
+  const { swalFire } = useSwalFire();
 
   const [signUpData, setSignUpData] = useState({
     firstName: "",
@@ -21,13 +20,17 @@ export default function SignUp() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const handleChange = (e) => {
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signUp(signUpData);
+    await fetcher({
+      url: "http://localhost:3200/sign-up",
+      method: "POST",
+      credentials: "omit",
+      data: signUpData,
+    });
     setSignUpData({
       firstName: "",
       lastName: "",
@@ -36,25 +39,18 @@ export default function SignUp() {
       confirmPassword: "",
       isAdmin: "",
     });
-    return;
   };
-
-  if (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Ooops... Something went wrong!",
-      text: error,
-    });
-    setError(null);
-  }
-  if (response) {
-    Swal.fire({
-      icon: "success",
-      title: "Success",
-      text: response.message,
-    });
-    navigate("/sign-in");
-  }
+  swalFire(
+    response,
+    error,
+    loading,
+    {
+      title: "Wait a second...",
+      text: "Your data is being saved",
+    },
+    setError,
+  );
+  response && navigation("/sign-in");
 
   const content = (
     <>

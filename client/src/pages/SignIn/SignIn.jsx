@@ -1,57 +1,51 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-
-import useAuth from "../../hooks/useAuth";
+import { useEffect, useState } from "react";
+import useFetch from "../../hooks/useFetch";
+import useSwalFire from "../../hooks/useSwalFire";
+import useNavigation from "../../hooks/useNavigation";
+import useHandlerActiveUser from "../../hooks/useHandlerActiveUser";
 import Form from "../../components/Form/Form";
-import { authContext } from "../../context/AuthProvider";
 
 export default function SignIn() {
-  const navigate = useNavigate();
-  const { handleSetUser } = useContext(authContext);
-  const { response, loading, error, setError, signIn } = useAuth();
+  const { handleSetActiveUser } = useHandlerActiveUser();
+  const { response, loading, error, setError, fetcher } = useFetch();
+  const { navigation } = useNavigation();
+  const { swalFire } = useSwalFire();
 
-  const [signInData, setSignInData] = useState({
-    email: "",
-    password: "",
-  });
+  const [signInData, setSignInData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
-
+  useEffect(() => {
+    if (response) {
+      handleSetActiveUser(response.user);
+    }
+  }, [response, handleSetActiveUser]);
   const handleChange = (e) => {
     setSignInData({ ...signInData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signIn(signInData);
+    await fetcher({
+      url: "http://localhost:3200/sign-in",
+      method: "POST",
+      credentials: "include",
+      data: signInData,
+    });
     setSignInData({
       email: "",
       password: "",
     });
-    return;
   };
-
-  if (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Something went wrong!",
-      text: "Retry again! Password or email may be incorrect",
-    });
-    setError(null);
-  }
-  if (response) {
-    handleSetUser({
-      userId: response.user.userId,
-      isAdmin: response.user.isAdmin,
-    });
-    Swal.fire({
-      icon: "success",
-      title: "Success",
-      text: response.message,
-    });
-    navigate("/rooms");
-  }
+  swalFire(
+    response,
+    error,
+    loading,
+    {
+      title: "Wait a second...",
+      text: "Login process",
+    },
+    setError,
+  );
+  response && navigation("/");
 
   const content = (
     <>

@@ -3,22 +3,21 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
-
+import { useContext } from "react";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import Error from "../components/Error/Error";
 import Homepage from "../pages/Homepage/Homepage";
 import Landingpage from "../pages/Landingpage/Landingpage";
-
-import { useContext } from "react";
-import { authContext } from "../context/AuthProvider";
+import { authContext } from "../contexts/AuthProvider";
 
 const Router = () => {
   const { user } = useContext(authContext);
   const router = createBrowserRouter([
     {
       path: "/",
-      element: user.userId === null ? <Landingpage /> : <Navigate to={"/rooms"} />,
+      element:
+        user.userId === null ? <Landingpage /> : <Navigate to={"/rooms"} />,
       errorElement: <Error />,
     },
     {
@@ -31,10 +30,9 @@ const Router = () => {
     },
     {
       path: "/rooms",
-      element: user.userId !== null ? <Homepage /> : <Navigate to={"/"} />,
+      element: user.userId === null ? <Navigate to={"/"} /> : <Homepage />,
     },
   ]);
   return <RouterProvider router={router} />;
 };
-
 export default Router;

@@ -1,4 +1,4 @@
-const { addNewMessage } = require('../services/messageService')
+const { addNewMessage, getMessages } = require('../services/messageService')
 const messageDataValidation = require("../validators/messageValidator")
 
 
@@ -19,4 +19,21 @@ async function handlePostMessage(req, res, next) {
     }
 }
 
-module.exports = { handlePostMessage }
+async function handleGetMessages(req, res, next) {
+    try {
+        const messages = await getMessages(req.params.roomId);
+        return res.status(200).json({
+            message: 'All messages',
+            messages
+        })
+    } catch (error) {
+        if (error.statusCode === 404) {
+            return res.status(404).json({
+                message: error.message
+            })
+        }
+        next(error)
+    }
+}
+
+module.exports = { handlePostMessage, handleGetMessages }

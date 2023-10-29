@@ -8,19 +8,15 @@ export default function Form({ content, handleSubmit, loading }) {
         onSubmit={handleSubmit}
       >
         {content}
-        <section className="mt-4 flex gap-2 text-white">
-          <button
-            className={`${
-              loading ? "bg-purple-400" : "bg-purple-600"
-            } rounded-2xl px-3 py-1`}
-            disabled={loading}
+        <section className="mt-4 flex gap-2">
+          <Link
+            to={loading ? "" : "/"}
+            className={`rounded-lg bg-purple-400 px-2 py-1`}
           >
-            <Link to={"/"}>Cancel</Link>
-          </button>
+            Cancel
+          </Link>
           <button
-            className={`${
-              loading ? "bg-purple-400" : "bg-purple-600"
-            } rounded-2xl px-3 py-1`}
+            className={`rounded-lg bg-purple-400 px-2 py-1`}
             type="submit"
             disabled={loading}
           >
