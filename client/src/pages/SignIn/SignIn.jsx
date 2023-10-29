@@ -17,8 +17,9 @@ export default function SignIn() {
   useEffect(() => {
     if (response) {
       handleSetActiveUser(response.user);
+      navigation("/");
     }
-  }, [response, handleSetActiveUser]);
+  }, [response, navigation, handleSetActiveUser]);
   const handleChange = (e) => {
     setSignInData({ ...signInData, [e.target.name]: e.target.value });
   };
@@ -45,7 +46,6 @@ export default function SignIn() {
     },
     setError,
   );
-  response && navigation("/");
 
   const content = (
     <>

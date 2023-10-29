@@ -1,5 +1,5 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import useSwalFire from "../../hooks/useSwalFire";
 import useNavigation from "../../hooks/useNavigation";
@@ -9,6 +9,12 @@ export default function SignUp() {
   const { response, loading, error, setError, fetcher } = useFetch();
   const { navigation } = useNavigation();
   const { swalFire } = useSwalFire();
+
+  useEffect(() => {
+    if (response) {
+      navigation("/sign-in");
+    }
+  }, [response, navigation]);
 
   const [signUpData, setSignUpData] = useState({
     firstName: "",
@@ -50,7 +56,6 @@ export default function SignUp() {
     },
     setError,
   );
-  response && navigation("/sign-in");
 
   const content = (
     <>

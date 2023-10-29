@@ -10,11 +10,12 @@ export default function Logout() {
   const { response, loading, error, setError, fetcher } = useFetch();
   const { navigation } = useNavigation();
   const { swalFire } = useSwalFire();
-    useEffect(() => {
-        if (response) {
-            handleDeleteActiveUser();
-        }
-    }, [response, handleDeleteActiveUser])
+  useEffect(() => {
+    if (response) {
+      handleDeleteActiveUser();
+      navigation("/");
+    }
+  }, [response, navigation, handleDeleteActiveUser]);
   const handleLogout = async () => {
     await fetcher({
       url: "http://localhost:3200/log-out",
@@ -33,8 +34,6 @@ export default function Logout() {
     },
     setError,
   );
-  response && navigation("/");
-  
   return (
     <button className="flex gap-2" onClick={handleLogout}>
       <ArrowLeftCircleIcon className="w-6" />
