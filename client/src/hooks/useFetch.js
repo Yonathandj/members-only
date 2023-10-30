@@ -26,6 +26,9 @@ export default function useFetch() {
             setError(error);
         } finally {
             setLoading(false);
+            setTimeout(() => {
+                setResponse(null)
+            }, 800);
         }
     }
     return { response, loading, error, setError, fetcher }

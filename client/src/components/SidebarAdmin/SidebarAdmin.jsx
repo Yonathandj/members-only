@@ -9,7 +9,11 @@ import useSwalFire from "../../hooks/useSwalFire";
 import { globalStateContext } from "../../contexts/GlobalStateProvider";
 
 export default function SidebarAdmin() {
-  const { rooms } = useContext(globalStateContext);
+  const { rooms, getAllRooms } = useContext(globalStateContext);
+  const options = {};
+  rooms.map((room) => {
+    options[room._id] = room.name;
+  });
 
   const { swalFireAlert, swalFireInputText, swalFireInputSelect } =
     useSwalFire();
@@ -25,12 +29,7 @@ export default function SidebarAdmin() {
         data: { name: roomName },
       }));
   };
-
   const handleUpdateRoom = async () => {
-    const options = {};
-    rooms.map((room) => {
-      options[room._id] = room.name;
-    });
     const selectedRoomId = await swalFireInputSelect(options);
     if (selectedRoomId) {
       const newRoomName = await swalFireInputText(
@@ -45,6 +44,15 @@ export default function SidebarAdmin() {
         }));
     }
   };
+  const handleDeleteRoom = async () => {
+    const selectedRoomId = await swalFireInputSelect(options);
+    selectedRoomId &&
+      (await fetcher({
+        url: `http://localhost:3200/rooms/${selectedRoomId}`,
+        method: "DELETE",
+        credentials: "include",
+      }));
+  };
 
   swalFireAlert(
     response,
@@ -56,6 +64,7 @@ export default function SidebarAdmin() {
     },
     setError,
   );
+  response && getAllRooms();
 
   return (
     <section className="flex gap-2">
@@ -69,7 +78,7 @@ export default function SidebarAdmin() {
           <ArrowPathIcon className="w-6" />
           <p className="text-purple-600">Update room</p>
         </button>
-        <button className="flex items-center gap-2">
+        <button className="flex items-center gap-2" onClick={handleDeleteRoom}>
           <TrashIcon className="w-6" />
           <p className="text-purple-600">Delete room</p>
         </button>
