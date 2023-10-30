@@ -1,8 +1,9 @@
-export default function Hero() {
+export default function HeroHomepage() {
   return (
-    <div className="text-center">
-      <h1 className="mt-28 text-center text-5xl font-bold sm:text-6xl">
-        <span className="text-purple-600">Members</span> Only Room Chat
+    <div>
+      <h1 className="text-center text-4xl font-bold sm:text-5xl">
+        <span className="text-purple-600">Speak It Loud!</span> Change the
+        World!
       </h1>
       <h2 className="mt-4 text-center text-3xl font-bold sm:text-4xl">
         Your place to express{" "}
