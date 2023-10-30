@@ -10,7 +10,7 @@ export default function SignIn() {
   const { handleSetActiveUser } = useHandlerActiveUser();
   const { response, loading, error, setError, fetcher } = useFetch();
   const { navigation } = useNavigation();
-  const { swalFire } = useSwalFire();
+  const { swalFireAlert } = useSwalFire();
 
   const [signInData, setSignInData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -36,7 +36,7 @@ export default function SignIn() {
       password: "",
     });
   };
-  swalFire(
+  swalFireAlert(
     response,
     error,
     loading,

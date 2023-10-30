@@ -8,7 +8,7 @@ import Form from "../../components/Form/Form";
 export default function SignUp() {
   const { response, loading, error, setError, fetcher } = useFetch();
   const { navigation } = useNavigation();
-  const { swalFire } = useSwalFire();
+  const { swalFireAlert } = useSwalFire();
 
   useEffect(() => {
     if (response) {
@@ -46,7 +46,7 @@ export default function SignUp() {
       isAdmin: "",
     });
   };
-  swalFire(
+  swalFireAlert(
     response,
     error,
     loading,

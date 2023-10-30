@@ -19,6 +19,9 @@ async function addNewRoom({ name }) {
 
 async function getAllRooms() {
     const rooms = await roomModel.find().exec();
+    if (rooms.length === 0) {
+        throw new notFoundError('No rooms created yet', 404);
+    }
     return rooms;
 }
 

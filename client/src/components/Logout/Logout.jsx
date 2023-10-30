@@ -9,7 +9,7 @@ export default function Logout() {
   const { handleDeleteActiveUser } = useHandlerActiveUser();
   const { response, loading, error, setError, fetcher } = useFetch();
   const { navigation } = useNavigation();
-  const { swalFire } = useSwalFire();
+  const { swalFireAlert } = useSwalFire();
   useEffect(() => {
     if (response) {
       handleDeleteActiveUser();
@@ -24,7 +24,7 @@ export default function Logout() {
       data: null,
     });
   };
-  swalFire(
+  swalFireAlert(
     response,
     error,
     loading,
