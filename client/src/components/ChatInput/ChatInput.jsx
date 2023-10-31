@@ -30,7 +30,7 @@ export default function ChatInput({ selectedRoom }) {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Share your thoughts"
-        className="w-full rounded-sm bg-gradient-to-r from-purple-600 to-pink-600 p-2 outline-none"
+        className="w-full rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 p-2 outline-none"
       />
       <button type="submit">
         <PaperAirplaneIcon className="absolute right-4 top-2 w-6" />
