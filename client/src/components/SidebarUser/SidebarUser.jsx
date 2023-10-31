@@ -9,7 +9,7 @@ export default function SidebarUser() {
     <section className="flex gap-2">
       <div className="h-40 w-[2px] bg-slate-600"></div>
       <section className="flex flex-col justify-center gap-y-6">
-        {rooms.length > 0 ? (
+        {rooms?.length > 0 ? (
           rooms.map((room) => (
             <Link
               className="flex items-center gap-2"
@@ -21,9 +21,9 @@ export default function SidebarUser() {
             </Link>
           ))
         ) : (
-          <Link className="flex items-center gap-2" to={""}>
+          <Link className="flex items-center gap-2" to={``}>
             <ChatBubbleLeftRightIcon className="w-6" />
-            <p className="text-purple-600">Loading! Please wait for a moment</p>
+            <p className="text-purple-600">Please wait! Load available rooms</p>
           </Link>
         )}
       </section>

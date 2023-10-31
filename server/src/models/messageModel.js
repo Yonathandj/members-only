@@ -6,11 +6,11 @@ const messageModelSchema = new mongoose.Schema({
     },
     userId: {
         type: mongoose.Schema.Types.String,
-        ref: 'user'
+        ref: 'User'
     },
     roomId: {
         type: mongoose.Schema.Types.String,
-        ref: 'room'
+        ref: 'Room'
     },
     message: {
         type: String,
@@ -22,4 +22,4 @@ const messageModelSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('message', messageModelSchema);
+module.exports = mongoose.model('Message', messageModelSchema);

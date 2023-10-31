@@ -11,11 +11,11 @@ import { globalStateContext } from "../../contexts/GlobalStateProvider";
 export default function SidebarAdmin() {
   const { rooms, getAllRooms } = useContext(globalStateContext);
   const options = {};
-  rooms.length > 0
+  rooms?.length > 0
     ? rooms.map((room) => {
         options[room._id] = room.name;
       })
-    : (options[0] = "Loading for available rooms");
+    : (options[0] = "Please wait! Load available rooms");
 
   const { swalFireAlert, swalFireInputText, swalFireInputSelect } =
     useSwalFire();
@@ -55,7 +55,6 @@ export default function SidebarAdmin() {
         credentials: "include",
       }));
   };
-
   swalFireAlert(
     response,
     error,
@@ -67,7 +66,6 @@ export default function SidebarAdmin() {
     setError,
   );
   response && getAllRooms();
-
   return (
     <section className="flex gap-2">
       <div className="h-40 w-[2px] bg-slate-600"></div>

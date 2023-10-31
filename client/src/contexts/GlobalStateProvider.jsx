@@ -3,7 +3,9 @@ import { createContext, useEffect, useState } from "react";
 export const globalStateContext = createContext(null);
 
 export default function GlobalStateProvider({ children }) {
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = useState([
+    { _id: 0, name: "Loading for available rooms" },
+  ]);
   const [messages, setMessages] = useState([]);
 
   const getAllRooms = async () => {

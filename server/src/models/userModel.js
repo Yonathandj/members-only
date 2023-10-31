@@ -32,4 +32,4 @@ userModelSchema.virtual('fullName').get(function () {
     return `${this.firstName} ${this.lastName}`
 })
 
-module.exports = mongoose.model("user", userModelSchema);
+module.exports = mongoose.model("User", userModelSchema);

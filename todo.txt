@@ -1,3 +1,4 @@
-ADD icon message
-Add delete session in client when close tab
-fix input message
+ADD ICON message
+DELETE session in client when close tab
+FIX input message overflow
+ADD image avatar

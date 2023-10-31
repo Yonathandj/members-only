@@ -4,9 +4,9 @@ import { authContext } from "../../contexts/AuthProvider";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 export default function ChatInput({ selectedRoom }) {
-  const [message, setMessage] = useState("");
-  const { user } = useContext(authContext);
   const { fetcher } = useFetch();
+  const { user } = useContext(authContext);
+  const [message, setMessage] = useState("");
 
   const handleSubmitMessage = async (e) => {
     e.preventDefault();
@@ -18,7 +18,6 @@ export default function ChatInput({ selectedRoom }) {
     });
     setMessage("");
   };
-
   return (
     <form
       className="relative mt-2 text-slate-100"

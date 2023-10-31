@@ -17,7 +17,7 @@ async function addNewMessage({ userId, roomId, message }) {
 }
 
 async function getMessages(roomId) {
-    const messages = await messageModel.find({ roomId }).populate('users').exec();
+    const messages = await messageModel.find({ roomId }).populate('userId').exec();
     if (messages.length === 0) {
         throw new notFoundError('There are no messages have been created for this room yet', 404);
     }
