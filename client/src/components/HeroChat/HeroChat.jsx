@@ -1,6 +1,6 @@
 export default function HeroChat() {
   return (
-    <div>
+    <div className="mt-20">
       <h1 className="text-center text-4xl font-bold sm:text-5xl">
         <span className="text-purple-600">Speak It Loud!</span> Change the
         World!

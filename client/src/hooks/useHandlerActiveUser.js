@@ -4,7 +4,7 @@ import { authContext } from "../contexts/AuthProvider"
 export default function useHandlerActiveUser() {
     const { setUser } = useContext(authContext);
 
-    const handleSetActiveUser = (userId, isAdmin) => {
+    const handleSetActiveUser = ({ userId, isAdmin }) => {
         setUser({ userId, isAdmin });
         localStorage.setItem("activeUser", JSON.stringify({ userId, isAdmin }));
     };

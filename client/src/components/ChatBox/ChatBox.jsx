@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+
 import ChatList from "../ChatList/ChatList";
 
 export default function ChatBox() {

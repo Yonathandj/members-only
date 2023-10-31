@@ -1,0 +1,3 @@
+ADD icon message
+Add delete session in client when close tab
+fix input message

@@ -3,8 +3,8 @@ import {
   UserCircleIcon,
   ArrowRightCircleIcon,
 } from "@heroicons/react/24/outline";
-import { authContext } from "../../contexts/AuthProvider";
 import { useContext } from "react";
+import { authContext } from "../../contexts/AuthProvider";
 import Logout from "../Logout/Logout";
 
 export default function NavBar() {
