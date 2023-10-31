@@ -9,9 +9,12 @@ import SignUp from "../pages/SignUp/SignUp";
 import Error from "../components/Error/Error";
 import Homepage from "../pages/Homepage/Homepage";
 import Landingpage from "../pages/Landingpage/Landingpage";
-import HeroHomepage from "../components/HeroHomepage/HeroHomepage";
+
+import ChatBox from "../components/ChatBox/ChatBox";
+import HeroChat from "../components/HeroChat/HeroChat";
 
 import { authContext } from "../contexts/AuthProvider";
+
 const Router = () => {
   const { user } = useContext(authContext);
   const router = createBrowserRouter([
@@ -32,7 +35,10 @@ const Router = () => {
     {
       path: "/rooms",
       element: user.userId === null ? <Navigate to={"/"} /> : <Homepage />,
-      children: [{ index: true, element: <HeroHomepage /> }],
+      children: [
+        { index: true, element: <HeroChat /> },
+        { path: "/rooms/:roomId", element: <ChatBox /> },
+      ],
     },
   ]);
   return <RouterProvider router={router} />;

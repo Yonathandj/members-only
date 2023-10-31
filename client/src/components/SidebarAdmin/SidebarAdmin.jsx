@@ -11,9 +11,11 @@ import { globalStateContext } from "../../contexts/GlobalStateProvider";
 export default function SidebarAdmin() {
   const { rooms, getAllRooms } = useContext(globalStateContext);
   const options = {};
-  rooms.map((room) => {
-    options[room._id] = room.name;
-  });
+  rooms.length > 0
+    ? rooms.map((room) => {
+        options[room._id] = room.name;
+      })
+    : (options[0] = "Loading for available rooms");
 
   const { swalFireAlert, swalFireInputText, swalFireInputSelect } =
     useSwalFire();

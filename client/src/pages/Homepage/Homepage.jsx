@@ -6,7 +6,7 @@ export default function Homepage() {
   return (
     <>
       <NavBar />
-      <div className="mt-16 flex items-center justify-between gap-2">
+      <div className="mt-8 flex justify-between gap-2">
         <section className="w-3/4">
           <Outlet />
         </section>

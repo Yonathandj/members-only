@@ -1,4 +1,4 @@
-export default function HeroHomepage() {
+export default function HeroChat() {
   return (
     <div>
       <h1 className="text-center text-4xl font-bold sm:text-5xl">

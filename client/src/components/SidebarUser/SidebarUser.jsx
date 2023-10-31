@@ -9,12 +9,23 @@ export default function SidebarUser() {
     <section className="flex gap-2">
       <div className="h-40 w-[2px] bg-slate-600"></div>
       <section className="flex flex-col justify-center gap-y-6">
-        {rooms.map((room) => (
-          <Link className="flex items-center gap-2" key={room._id} to={`rooms/${room._id}`}>
+        {rooms.length > 0 ? (
+          rooms.map((room) => (
+            <Link
+              className="flex items-center gap-2"
+              key={room._id}
+              to={`${room._id}`}
+            >
+              <ChatBubbleLeftRightIcon className="w-6" />
+              <p className="text-purple-600">{room.name}</p>
+            </Link>
+          ))
+        ) : (
+          <Link className="flex items-center gap-2" to={""}>
             <ChatBubbleLeftRightIcon className="w-6" />
-            <p className="text-purple-600">{room.name}</p>
+            <p className="text-purple-600">Loading! Please wait for a moment</p>
           </Link>
-        ))}
+        )}
       </section>
     </section>
   );
