@@ -1,15 +1,21 @@
-import { useContext, useState } from "react";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 import useFetch from "../../hooks/useFetch";
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import { useContext, useState } from "react";
+import { FaceSmileIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 import { authContext } from "../../contexts/AuthProvider";
 import { globalStateContext } from "../../contexts/GlobalStateProvider";
 
 export default function ChatInput({ selectedRoom }) {
   const { fetcher } = useFetch();
-  const { user } = useContext(authContext);
   const [message, setMessage] = useState("");
+  const [isEmotOpen, setIsEmotOpen] = useState(false);
+  const { user } = useContext(authContext);
   const { getAllMessagesForSpecificRoom } = useContext(globalStateContext);
+
+  console.log(message);
+
   const handleSubmitMessage = async (e) => {
     e.preventDefault();
     await fetcher({
@@ -34,6 +40,20 @@ export default function ChatInput({ selectedRoom }) {
         placeholder="Share your thoughts"
         className="w-full rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 p-2 outline-none"
       />
+      {isEmotOpen && (
+        <section className="fixed right-[26rem] top-32">
+          <Picker
+            data={data}
+            onEmojiSelect={(e) => {
+              setIsEmotOpen(false);
+              setMessage(message + e.native);
+            }}
+          />
+        </section>
+      )}
+      <button onClick={() => setIsEmotOpen(!isEmotOpen)} type="button">
+        <FaceSmileIcon className="absolute right-16 top-2 w-6" />
+      </button>
       <button type="submit">
         <PaperAirplaneIcon className="absolute right-4 top-2 w-6" />
       </button>
