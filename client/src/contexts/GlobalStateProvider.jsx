@@ -5,7 +5,10 @@ export const globalStateContext = createContext(null);
 export default function GlobalStateProvider({ children }) {
   const [rooms, setRooms] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [isSelectRoom, setIsSelectRoom] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState({
+    isSelected: false,
+    _id: null,
+  });
 
   const getAllRooms = async () => {
     const response = await fetch("http://localhost:3200/rooms", {
@@ -36,8 +39,8 @@ export default function GlobalStateProvider({ children }) {
         setRooms,
         messages,
         setMessages,
-        isSelectRoom,
-        setIsSelectRoom,
+        selectedRoom,
+        setSelectedRoom,
         getAllRooms,
         getAllMessagesForSpecificRoom,
       }}

@@ -30,7 +30,7 @@ export default function ChatList() {
   return (
     <div className="flex h-[480px] flex-col justify-between rounded-2xl bg-[url('../../../public/chat-background.jpg')] p-4 text-slate-100 shadow-lg">
       <section className="overflow-y-auto">
-        <section className="flex w-1/4 items-center gap-2 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 p-1">
+        <section className="flex w-1/3 items-center gap-2 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 p-1">
           <AtSymbolIcon className="w-6" />
           <h2>{selectedRoom.name} Room</h2>
         </section>

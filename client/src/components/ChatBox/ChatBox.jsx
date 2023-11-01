@@ -5,11 +5,19 @@ import { globalStateContext } from "../../contexts/GlobalStateProvider";
 
 import ChatList from "../ChatList/ChatList";
 export default function ChatBox() {
-  const { isSelectRoom, setIsSelectRoom } = useContext(globalStateContext);
+  const { setIsSelectRoom } = useContext(globalStateContext);
   return (
     <div className="flex gap-2">
       <section className="w-1/12 text-slate-100">
-        <Link to={"/rooms"} onClick={() => setIsSelectRoom(!isSelectRoom)}>
+        <Link
+          to={"/rooms"}
+          onClick={() =>
+            setIsSelectRoom({
+              isSelected: false,
+              _id: 0,
+            })
+          }
+        >
           <ChevronLeftIcon className="w-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 p-2" />
         </Link>
       </section>

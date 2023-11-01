@@ -9,7 +9,7 @@ import useSwalFire from "../../hooks/useSwalFire";
 import { globalStateContext } from "../../contexts/GlobalStateProvider";
 
 export default function SidebarAdmin() {
-  const { rooms, getAllRooms, isSelectRoom } = useContext(globalStateContext);
+  const { rooms, getAllRooms, selectedRoom } = useContext(globalStateContext);
   const options = {};
   rooms?.length > 0 &&
     rooms.map((room) => {
@@ -64,7 +64,7 @@ export default function SidebarAdmin() {
   );
   response && getAllRooms();
   return (
-    isSelectRoom === false && (
+    selectedRoom.isSelected === false && (
       <section className="flex gap-2">
         <div className="h-40 w-[2px] bg-slate-600"></div>
         <section className="flex flex-col justify-center gap-y-6">
