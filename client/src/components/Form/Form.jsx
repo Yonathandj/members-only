@@ -11,12 +11,12 @@ export default function Form({ content, handleSubmit, loading }) {
         <section className="mt-4 flex gap-2">
           <Link
             to={loading ? "" : "/"}
-            className={`rounded-lg bg-purple-400 px-2 py-1`}
+            className={`rounded-2xl bg-purple-500 px-2 py-1`}
           >
             Cancel
           </Link>
           <button
-            className={`rounded-lg bg-purple-400 px-2 py-1`}
+            className={`rounded-2xl bg-purple-500 px-2 py-1`}
             type="submit"
             disabled={loading}
           >

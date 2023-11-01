@@ -1,12 +1,11 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const globalStateContext = createContext(null);
 
 export default function GlobalStateProvider({ children }) {
-  const [rooms, setRooms] = useState([
-    { _id: 0, name: "Loading for available rooms" },
-  ]);
+  const [rooms, setRooms] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [isSelectRoom, setIsSelectRoom] = useState(false);
 
   const getAllRooms = async () => {
     const response = await fetch("http://localhost:3200/rooms", {
@@ -18,13 +17,30 @@ export default function GlobalStateProvider({ children }) {
     const res = await response.json();
     setRooms(res.rooms);
   };
-  useEffect(() => {
-    getAllRooms();
-  }, []);
-
+  const getAllMessagesForSpecificRoom = async (selectedRoom) => {
+    const response = await fetch(
+      `http://localhost:3200/messages/rooms/${selectedRoom._id}`,
+      {
+        mode: "cors",
+        method: "GET",
+        credentials: "include",
+      },
+    );
+    const Allmessages = await response.json();
+    setMessages(Allmessages.messages);
+  };
   return (
     <globalStateContext.Provider
-      value={{ rooms, setRooms, messages, setMessages, getAllRooms }}
+      value={{
+        rooms,
+        setRooms,
+        messages,
+        setMessages,
+        isSelectRoom,
+        setIsSelectRoom,
+        getAllRooms,
+        getAllMessagesForSpecificRoom,
+      }}
     >
       {children}
     </globalStateContext.Provider>

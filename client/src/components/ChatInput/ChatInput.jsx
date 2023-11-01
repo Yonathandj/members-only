@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import { authContext } from "../../contexts/AuthProvider";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+
+import { authContext } from "../../contexts/AuthProvider";
+import { globalStateContext } from "../../contexts/GlobalStateProvider";
 
 export default function ChatInput({ selectedRoom }) {
   const { fetcher } = useFetch();
   const { user } = useContext(authContext);
   const [message, setMessage] = useState("");
-
+  const { getAllMessagesForSpecificRoom } = useContext(globalStateContext);
   const handleSubmitMessage = async (e) => {
     e.preventDefault();
     await fetcher({
@@ -17,6 +19,7 @@ export default function ChatInput({ selectedRoom }) {
       data: { userId: user.userId, roomId: selectedRoom._id, message },
     });
     setMessage("");
+    getAllMessagesForSpecificRoom(selectedRoom);
   };
   return (
     <form

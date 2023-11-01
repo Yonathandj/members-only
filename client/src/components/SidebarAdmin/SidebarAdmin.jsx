@@ -9,18 +9,15 @@ import useSwalFire from "../../hooks/useSwalFire";
 import { globalStateContext } from "../../contexts/GlobalStateProvider";
 
 export default function SidebarAdmin() {
-  const { rooms, getAllRooms } = useContext(globalStateContext);
+  const { rooms, getAllRooms, isSelectRoom } = useContext(globalStateContext);
   const options = {};
-  rooms?.length > 0
-    ? rooms.map((room) => {
-        options[room._id] = room.name;
-      })
-    : (options[0] = "Please wait! Load available rooms");
-
+  rooms?.length > 0 &&
+    rooms.map((room) => {
+      options[room._id] = room.name;
+    });
   const { swalFireAlert, swalFireInputText, swalFireInputSelect } =
     useSwalFire();
   const { response, loading, error, setError, fetcher } = useFetch();
-
   const handleAddRoom = async () => {
     const roomName = await swalFireInputText("Create new room");
     roomName &&
@@ -67,22 +64,30 @@ export default function SidebarAdmin() {
   );
   response && getAllRooms();
   return (
-    <section className="flex gap-2">
-      <div className="h-40 w-[2px] bg-slate-600"></div>
-      <section className="flex flex-col justify-center gap-y-6">
-        <button className="flex items-center gap-2" onClick={handleAddRoom}>
-          <PuzzlePieceIcon className="w-6" />
-          <p className="text-purple-600">Add room</p>
-        </button>
-        <button className="flex items-center gap-2" onClick={handleUpdateRoom}>
-          <ArrowPathIcon className="w-6" />
-          <p className="text-purple-600">Update room</p>
-        </button>
-        <button className="flex items-center gap-2" onClick={handleDeleteRoom}>
-          <TrashIcon className="w-6" />
-          <p className="text-purple-600">Delete room</p>
-        </button>
+    isSelectRoom === false && (
+      <section className="flex gap-2">
+        <div className="h-40 w-[2px] bg-slate-600"></div>
+        <section className="flex flex-col justify-center gap-y-6">
+          <button className="flex items-center gap-2" onClick={handleAddRoom}>
+            <PuzzlePieceIcon className="w-6" />
+            <p className="text-purple-600">Add room</p>
+          </button>
+          <button
+            className="flex items-center gap-2"
+            onClick={handleUpdateRoom}
+          >
+            <ArrowPathIcon className="w-6" />
+            <p className="text-purple-600">Update room</p>
+          </button>
+          <button
+            className="flex items-center gap-2"
+            onClick={handleDeleteRoom}
+          >
+            <TrashIcon className="w-6" />
+            <p className="text-purple-600">Delete room</p>
+          </button>
+        </section>
       </section>
-    </section>
+    )
   );
 }

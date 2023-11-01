@@ -7,10 +7,10 @@ import useHandlerActiveUser from "../../hooks/useHandlerActiveUser";
 import Form from "../../components/Form/Form";
 
 export default function SignIn() {
-  const { handleSetActiveUser } = useHandlerActiveUser();
-  const { response, loading, error, setError, fetcher } = useFetch();
   const { navigation } = useNavigation();
   const { swalFireAlert } = useSwalFire();
+  const { handleSetActiveUser } = useHandlerActiveUser();
+  const { response, loading, error, setError, fetcher } = useFetch();
 
   const [signInData, setSignInData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);

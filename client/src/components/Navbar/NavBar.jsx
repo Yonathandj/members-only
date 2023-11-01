@@ -5,6 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useContext } from "react";
 import { authContext } from "../../contexts/AuthProvider";
+
 import Logout from "../Logout/Logout";
 
 export default function NavBar() {
