@@ -7,9 +7,12 @@ import { useContext } from "react";
 import useFetch from "../../hooks/useFetch";
 import useSwalFire from "../../hooks/useSwalFire";
 import { globalStateContext } from "../../contexts/GlobalStateProvider";
+import { authContext } from "../../contexts/AuthProvider";
 
 export default function SidebarAdmin() {
   const { rooms, getAllRooms, selectedRoom } = useContext(globalStateContext);
+  const { user } = useContext(authContext);
+
   const options = {};
   rooms?.length > 0 &&
     rooms.map((room) => {
@@ -64,7 +67,8 @@ export default function SidebarAdmin() {
   );
   response && getAllRooms();
   return (
-    selectedRoom.isSelected === false && (
+    selectedRoom.isSelected === false &&
+    user.isAdmin === true && (
       <section className="flex gap-2">
         <div className="h-40 w-[2px] bg-slate-600"></div>
         <section className="flex flex-col justify-center gap-y-6">
